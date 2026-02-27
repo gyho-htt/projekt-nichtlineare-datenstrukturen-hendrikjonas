@@ -88,14 +88,14 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	 *            einzufuegendes Objekt vom Typ ContentType
 	 *            
 	 */
-	public void insert(ContentType pContent) {
+	public void insert(ContentType pContent, String pAttribut) {
 		if (pContent != null) {
 			if (isEmpty()) {
 				this.node = new BSTNode<ContentType>(pContent);
-			} else if (pContent.isLess(this.node.content)) {
-				this.node.left.insert(pContent);
-			} else if(pContent.isGreater(this.node.content)) {
-				this.node.right.insert(pContent);
+			} else if (pContent.isLess(this.node.content, pAttribut)) {
+				this.node.left.insert(pContent, pAttribut);
+			} else if(pContent.isGreater(this.node.content, pAttribut)) {
+				this.node.right.insert(pContent, pAttribut);
 			}
 		}
 	}
@@ -158,18 +158,18 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	 *            zu entfernendes Objekt vom Typ ContentType
 	 *            
 	 */
-	public void remove(ContentType pContent) {
+	public void remove(ContentType pContent, String pAttribut) {
 		if (isEmpty() || pContent == null ) {
 			// Abbrechen, da kein Element zum entfernen vorhanden ist.
 		  return;
 		}
 		
-		if (pContent.isLess(node.content)) {
+		if (pContent.isLess(node.content, pAttribut)) {
 			// Element ist im linken Teilbaum zu loeschen.
-			node.left.remove(pContent);
-		} else if (pContent.isGreater(node.content)) {
+			node.left.remove(pContent, pAttribut);
+		} else if (pContent.isGreater(node.content, pAttribut)) {
 			// Element ist im rechten Teilbaum zu loeschen.
-			node.right.remove(pContent);
+			node.right.remove(pContent, pAttribut);
 		} else {
 			// Element ist gefunden.
 			if (node.left.isEmpty()) {
@@ -194,7 +194,7 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 							.ancestorOfSmallRight();
 					BinarySearchTree<ContentType> smallest = previous.node.left;
 					this.node.content = smallest.node.content;
-					previous.remove(smallest.node.content);
+					previous.remove(smallest.node.content, pAttribut);
 				}
 			}
 		}		
@@ -211,19 +211,19 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	 * @return das gefundene Objekt vom Typ ContentType, bei erfolgloser Suche null
 	 * 
 	 */
-	public ContentType search(ContentType pContent) {
+	public ContentType search(ContentType pContent, String pAttribut) {
 		if (this.isEmpty() || pContent == null) {
 			// Abbrechen, da es kein Element zu suchen gibt.
 			return null;
 		} else {
 			ContentType content = this.getContent();
-			if (pContent.isLess(content)) {
+			if (pContent.isLess(content, pAttribut)) {
 				// Element wird im linken Teilbaum gesucht.
-				return this.getLeftTree().search(pContent);
-			} else if (pContent.isGreater(content)) {
+				return this.getLeftTree().search(pContent, pAttribut);
+			} else if (pContent.isGreater(content, pAttribut)) {
 				// Element wird im rechten Teilbaum gesucht.
-				return this.getRightTree().search(pContent);
-			} else if (pContent.isEqual(content)) {
+				return this.getRightTree().search(pContent, pAttribut);
+			} else if (pContent.isEqual(content, pAttribut)) {
 				// Element wurde gefunden.
 			  return content;				
 			} else {	

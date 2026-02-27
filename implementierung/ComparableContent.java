@@ -16,7 +16,7 @@ public interface ComparableContent<ContentType> {
 
 
 
-  public boolean isEqual(ContentType pContent);
+  public boolean isEqual(ContentType pContent, String pAttribut);
 
   /**
    * Wenn festgestellt wird, dass das Objekt, von dem die Methode aufgerufen
@@ -29,6 +29,6 @@ public interface ComparableContent<ContentType> {
    * @return true, wenn das aufrufende Objekt kleiner ist als das Objekt
    *         pContent, sonst false   
    */     
-  public boolean isLess(ContentType pContent);
+  public boolean isLess(ContentType pContent, String pAttribut);
 
 }
