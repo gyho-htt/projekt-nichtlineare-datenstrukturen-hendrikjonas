@@ -13,17 +13,22 @@ public class Compare{
 
 
     return 0;
-  } 
-  
+  }
+  public int comparePublisher(Videospiele v1, Videospiele v2){
+      int i = v1.getPublisher().compareTo(v2.getPublisher());
+    if (i<0) return -1;
+    if (i>0) return 1;
+    return 0;
+  }
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
 }

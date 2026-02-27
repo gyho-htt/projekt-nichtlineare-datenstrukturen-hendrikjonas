@@ -3,26 +3,26 @@ class Videospiele implements ComparableContent<Videospiele> {
   private String titel, publisher, genre;
   Compare vergleicher;
   //Grafikkarten mindestanforderung
-  public Videospiele(int pErscheinungsjahr, String pTitel, int pPublisher, int pGenre, int pPreis){
+  public Videospiele(int pErscheinungsjahr, int pPreis, String pTitel, String pPublisher, String pGenre){
     this.vergleicher = new Compare();
     this.preis = pPreis;
+    this.erscheinungsjahr = pErscheinungsjahr;
+    this.titel = pTitel;
+    this.publisher = pPublisher;
+    this.genre = pGenre;
   }
   
-  public boolean isGreater(Videospiele pVideospiele, String pAttribut){
-    if(pAttribut.equals(preis)){
+  public boolean isGreater(Videospiele pVideospiele, String pAttribut) {
+    if (pAttribut.equals("preis")) {
       int pErgebnis = vergleicher.comparePreis(this, pVideospiele);
-      if(pErgebnis == 1){
-        return true;
-      }
+      if (pErgebnis == 1) return true;
+      if (pErgebnis == -1 || pErgebnis == 0) return false;
 
-    }else {
-      return false;
     }
-
     return false;
-    }
 
-    public boolean isLess(Videospiele pVideospiele){
+  }
+  public boolean isLess(Videospiele pVideospiele){
         return preis < pVideospiele.getPreis();
     }
 
