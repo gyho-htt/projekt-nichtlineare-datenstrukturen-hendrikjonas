@@ -20,32 +20,30 @@ public class Comparer{
   }
 
   public int compareTitel(Game pV1, Game pV2){
-    int i = pV1.getPublisher().compareTo(pV2.getPublisher());
+    int i = pV1.getTitel().compareTo(pV2.getTitel());
     if (i<0) return -1;
     if (i>0) return 1;
     return 0;
   }
 
   public int compareGenre(Game pV1, Game pV2){
-    int i = pV1.getPublisher().compareTo(pV2.getPublisher());
+    int i = pV1.getGenre().compareTo(pV2.getGenre());
     if (i<0) return -1;
     if (i>0) return 1;
     return 0;
   }
 
   public int compareErscheinungsjahr(Game pV1, Game pV2){
-    int i = pV1.getPublisher().compareTo(pV2.getPublisher());
-    if (i<0) return -1;
-    if (i>0) return 1;
+    if(pV1.getErscheinungsjahr() < pV2.getErscheinungsjahr()){
+      return -1;
+    }
+    if(pV1.getErscheinungsjahr() > pV2.getErscheinungsjahr()) {
+      return 1;
+    }
+    if(pV1.getErscheinungsjahr() == pV2.getErscheinungsjahr()){
+      return 0;
+    }
     return 0;
   }
-
-
-
-
-
-
-
-
 
 }

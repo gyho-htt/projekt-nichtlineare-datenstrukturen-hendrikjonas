@@ -97,6 +97,9 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 			} else if(pContent.isGreater(this.node.content, pAttribut)) {
 				this.node.right.insert(pContent, pAttribut);
 			}
+			else if(pContent.isEqual(this.node.content, pAttribut)){
+				this.node.right.insert(pContent, pAttribut);
+			}
 		}
 	}
 
@@ -219,9 +222,12 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 			ContentType content = this.getContent();
 			if (pContent.isLess(content, pAttribut)) {
 				// Element wird im linken Teilbaum gesucht.
+				System.out.println("Nach Links");
 				return this.getLeftTree().search(pContent, pAttribut);
+
 			} else if (pContent.isGreater(content, pAttribut)) {
 				// Element wird im rechten Teilbaum gesucht.
+				System.out.println("Nach Rechts");
 				return this.getRightTree().search(pContent, pAttribut);
 			} else if (pContent.isEqual(content, pAttribut)) {
 				// Element wurde gefunden.

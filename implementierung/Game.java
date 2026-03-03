@@ -19,22 +19,22 @@ class Game implements ComparableContent<Game> {
       if (pErgebnis == -1 || pErgebnis == 0) return false;
     }
     if (pAttribut.equals("erscheinungsjahr")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.compareErscheinungsjahr(this, pGame);
       if (pErgebnis == 1) return true;
       if (pErgebnis == -1 || pErgebnis == 0) return false;
     }
     if (pAttribut.equals("titel")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.compareTitel(this, pGame);
       if (pErgebnis == 1) return true;
       if (pErgebnis == -1 || pErgebnis == 0) return false;
     }
     if (pAttribut.equals("publisher")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.comparePublisher(this, pGame);
       if (pErgebnis == 1) return true;
       if (pErgebnis == -1 || pErgebnis == 0) return false;
     }
     if (pAttribut.equals("genre")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.compareGenre(this, pGame);
       if (pErgebnis == 1) return true;
       if (pErgebnis == -1 || pErgebnis == 0) return false;
     }
@@ -49,25 +49,25 @@ class Game implements ComparableContent<Game> {
 
     }
     if (pAttribut.equals("erscheinungsjahr")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.compareErscheinungsjahr(this, pGame);
       if (pErgebnis == 0) return true;
       if (pErgebnis == -1 || pErgebnis == 1) return false;
 
     }
     if (pAttribut.equals("titel")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.compareTitel(this, pGame);
       if (pErgebnis == 0) return true;
       if (pErgebnis == -1 || pErgebnis == 1) return false;
 
     }
     if (pAttribut.equals("publisher")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.comparePublisher(this, pGame);
       if (pErgebnis == 0) return true;
       if (pErgebnis == -1 || pErgebnis == 1) return false;
 
     }
     if (pAttribut.equals("genre")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.compareGenre(this, pGame);
       if (pErgebnis == 0) return true;
       if (pErgebnis == -1 || pErgebnis == 1) return false;
 
@@ -82,22 +82,22 @@ class Game implements ComparableContent<Game> {
       if (pErgebnis == 1 || pErgebnis == 0) return false;
     }
     if (pAttribut.equals("erscheinungsjahr")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.compareErscheinungsjahr(this, pGame);
       if (pErgebnis == -1) return true;
       if (pErgebnis == 1 || pErgebnis == 0) return false;
     }
     if (pAttribut.equals("titel")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.compareTitel(this, pGame);
       if (pErgebnis == -1) return true;
       if (pErgebnis == 1 || pErgebnis == 0) return false;
     }
     if (pAttribut.equals("publisher")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.comparePublisher(this, pGame);
       if (pErgebnis == -1) return true;
       if (pErgebnis == 1 || pErgebnis == 0) return false;
     }
     if (pAttribut.equals("genre")) {
-      int pErgebnis = vergleicher.comparePreis(this, pGame);
+      int pErgebnis = vergleicher.compareGenre(this, pGame);
       if (pErgebnis == -1) return true;
       if (pErgebnis == 1 || pErgebnis == 0) return false;
     }
