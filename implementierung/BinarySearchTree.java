@@ -23,7 +23,7 @@
  * beiden Teilbaeumen. <br />
  * Hinweis: In dieser Version wird die Klasse BinaryTree nicht benutzt.
  * </p>
- * 
+ *
  * @author Qualitaets- und UnterstuetzungsAgentur - Landesinstitut fuer Schule
  * @version Generisch_03 2017-11-28
  */
@@ -37,19 +37,19 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	 * nicht-null-Teilbaeume hat.
 	 */
 	private class BSTNode<CT extends ComparableContent<CT>> {
-	  
+
 		private CT content;
 		private BinarySearchTree<CT> left, right;
 
 		public BSTNode(CT pContent) {
-			// Der Knoten hat einen linken und rechten Teilbaum, die 
-			// beide von null verschieden sind. Also hat ein Blatt immer zwei 
+			// Der Knoten hat einen linken und rechten Teilbaum, die
+			// beide von null verschieden sind. Also hat ein Blatt immer zwei
 			// leere Teilbaeume unter sich.
 			this.content = pContent;
 			left = new BinarySearchTree<CT>();
 			right = new BinarySearchTree<CT>();
 		}
-		
+
 	}
 
 	/* ----------- Ende der privaten inneren Klasse -------------- */
@@ -66,9 +66,9 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	/**
 	 * Diese Anfrage liefert den Wahrheitswert true, wenn der Suchbaum leer ist,
 	 * sonst liefert sie den Wert false.
-	 * 
+	 *
 	 * @return true, wenn der binaere Suchbaum leer ist, sonst false
-	 * 
+	 *
 	 */
 	public boolean isEmpty() {
 		return this.node == null;
@@ -83,22 +83,19 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	 * liefert, wenn isLess und isGreater false liefern. <br />
 	 * Andernfalls (isLess oder isGreater) wird das Objekt pContent entsprechend
 	 * der vorgegebenen Ordnungsrelation in den BinarySearchTree eingeordnet.
-	 * 
+	 *
 	 * @param pContent
 	 *            einzufuegendes Objekt vom Typ ContentType
-	 *            
+	 *
 	 */
-	public void insert(ContentType pContent, String pAttribut) {
+	public void insert(ContentType pContent) {
 		if (pContent != null) {
 			if (isEmpty()) {
 				this.node = new BSTNode<ContentType>(pContent);
-			} else if (pContent.isLess(this.node.content, pAttribut)) {
-				this.node.left.insert(pContent, pAttribut);
-			} else if(pContent.isGreater(this.node.content, pAttribut)) {
-				this.node.right.insert(pContent, pAttribut);
-			}
-			else if(pContent.isEqual(this.node.content, pAttribut)){
-				this.node.right.insert(pContent, pAttribut);
+			} else if (pContent.isLess(this.node.content)) {
+				this.node.left.insert(pContent);
+			} else if(pContent.isGreater(this.node.content)) {
+				this.node.right.insert(pContent);
 			}
 		}
 	}
@@ -106,10 +103,10 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	/**
 	 * Diese Anfrage liefert den linken Teilbaum des binaeren Suchbaumes. <br />
 	 * Wenn er leer ist, wird null zurueckgegeben.
-	 * 
-	 * @return den linken Teilbaum (Objekt vom Typ BinarySearchTree<ContentType>) 
+	 *
+	 * @return den linken Teilbaum (Objekt vom Typ BinarySearchTree<ContentType>)
 	 *         bzw. null, wenn der Suchbaum leer ist
-	 *         
+	 *
 	 */
 	public BinarySearchTree<ContentType> getLeftTree() {
 		if (this.isEmpty()) {
@@ -122,10 +119,10 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	/**
 	 * Diese Anfrage liefert das Inhaltsobjekt des Suchbaumes. Wenn der Suchbaum
 	 * leer ist, wird null zurueckgegeben.
-	 * 
+	 *
 	 * @return das Inhaltsobjekt vom Typ ContentType bzw. null, wenn der aktuelle
 	 *         Suchbaum leer ist
-	 *         
+	 *
 	 */
 	public ContentType getContent() {
 		if (this.isEmpty()) {
@@ -138,10 +135,10 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	/**
 	 * Diese Anfrage liefert den rechten Teilbaum des binaeren Suchbaumes. <br />
 	 * Wenn er leer ist, wird null zurueckgegeben.
-	 * 
-	 * @return den rechten Teilbaum (Objekt vom Typ BinarySearchTree<ContentType>) 
+	 *
+	 * @return den rechten Teilbaum (Objekt vom Typ BinarySearchTree<ContentType>)
 	 *         bzw. null, wenn der aktuelle Suchbaum leer ist
-	 *         
+	 *
 	 */
 	public BinarySearchTree<ContentType> getRightTree() {
 		if (this.isEmpty()) {
@@ -156,23 +153,23 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	 * pContent uebereinstimmendes Objekt im binaeren Suchbaum enthalten
 	 * ist, wird dieses entfernt. Falls der Parameter null ist, aendert sich
 	 * nichts.
-	 * 
+	 *
 	 * @param pContent
 	 *            zu entfernendes Objekt vom Typ ContentType
-	 *            
+	 *
 	 */
-	public void remove(ContentType pContent, String pAttribut) {
+	public void remove(ContentType pContent) {
 		if (isEmpty() || pContent == null ) {
 			// Abbrechen, da kein Element zum entfernen vorhanden ist.
-		  return;
+			return;
 		}
-		
-		if (pContent.isLess(node.content, pAttribut)) {
+
+		if (pContent.isLess(node.content)) {
 			// Element ist im linken Teilbaum zu loeschen.
-			node.left.remove(pContent, pAttribut);
-		} else if (pContent.isGreater(node.content, pAttribut)) {
+			node.left.remove(pContent);
+		} else if (pContent.isGreater(node.content)) {
 			// Element ist im rechten Teilbaum zu loeschen.
-			node.right.remove(pContent, pAttribut);
+			node.right.remove(pContent);
 		} else {
 			// Element ist gefunden.
 			if (node.left.isEmpty()) {
@@ -197,10 +194,10 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 							.ancestorOfSmallRight();
 					BinarySearchTree<ContentType> smallest = previous.node.left;
 					this.node.content = smallest.node.content;
-					previous.remove(smallest.node.content, pAttribut);
+					previous.remove(smallest.node.content);
 				}
 			}
-		}		
+		}
 	}
 
 	/**
@@ -208,32 +205,29 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	 * pContent uebereinstimmendes Objekt im binaeren Suchbaum enthalten ist,
 	 * liefert die Anfrage dieses, ansonsten wird null zurueckgegeben. <br />
 	 * Falls der Parameter null ist, wird null zurueckgegeben.
-	 * 
+	 *
 	 * @param pContent
 	 *            zu suchendes Objekt vom Typ ContentType
 	 * @return das gefundene Objekt vom Typ ContentType, bei erfolgloser Suche null
-	 * 
+	 *
 	 */
-	public ContentType search(ContentType pContent, String pAttribut) {
+	public ContentType search(ContentType pContent) {
 		if (this.isEmpty() || pContent == null) {
 			// Abbrechen, da es kein Element zu suchen gibt.
 			return null;
 		} else {
 			ContentType content = this.getContent();
-			if (pContent.isLess(content, pAttribut)) {
+			if (pContent.isLess(content)) {
 				// Element wird im linken Teilbaum gesucht.
-				System.out.println("Nach Links");
-				return this.getLeftTree().search(pContent, pAttribut);
-
-			} else if (pContent.isGreater(content, pAttribut)) {
+				return this.getLeftTree().search(pContent);
+			} else if (pContent.isGreater(content)) {
 				// Element wird im rechten Teilbaum gesucht.
-				System.out.println("Nach Rechts");
-				return this.getRightTree().search(pContent, pAttribut);
-			} else if (pContent.isEqual(content, pAttribut)) {
+				return this.getRightTree().search(pContent);
+			} else if (pContent.isEqual(content)) {
 				// Element wurde gefunden.
-			  return content;				
-			} else {	
-			  // Dieser Fall sollte nicht auftreten.
+				return content;
+			} else {
+				// Dieser Fall sollte nicht auftreten.
 				return null;
 			}
 		}
@@ -245,9 +239,9 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	 * Die Methode liefert denjenigen Baum, dessen linker Nachfolger keinen linken
 	 * Nachfolger mehr hat. Es ist also spaeter moeglich, in einem Baum im
 	 * rechten Nachfolger den Vorgaenger des linkesten Nachfolgers zu finden.
-	 * 
+	 *
 	 */
-	private BinarySearchTree<ContentType> ancestorOfSmallRight() {		
+	private BinarySearchTree<ContentType> ancestorOfSmallRight() {
 		if (getNodeOfLeftSuccessor().left.isEmpty()) {
 			return this;
 		} else {
